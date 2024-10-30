@@ -1,4 +1,6 @@
 package br.com.hadryan.finance.exception;
 
-public record DefaultErrorMessage() {
+import org.springframework.http.HttpStatus;
+
+public record DefaultErrorMessage(HttpStatus status, String message) {
 }
