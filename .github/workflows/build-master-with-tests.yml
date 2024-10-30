@@ -19,6 +19,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        name: Checkout Pull Request
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Set up JDK 21
