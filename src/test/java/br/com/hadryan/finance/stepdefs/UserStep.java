@@ -68,11 +68,8 @@ public class UserStep extends StepDefsDefault {
 
         var request = new HttpEntity<>(postRequest);
 
-        try {
-            postResponse = restTemplate.postForEntity(URL, request, UserPostResponse.class);
-        } catch (EmailAlreadyRegisteredException e) {
-            errorMessage = e.getMessage();
-        }
+        postResponse = restTemplate.postForEntity(URL, request, UserPostResponse.class);
+
     }
 
     @Then("a resposta deve ter o status code {int}")

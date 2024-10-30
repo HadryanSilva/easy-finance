@@ -1,6 +1,7 @@
 package br.com.hadryan.finance.exception;
 
-import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public record DefaultErrorMessage(HttpStatus status, String message) {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record DefaultErrorMessage(int status, String message) {
 }
