@@ -1,6 +1,7 @@
 package br.com.hadryan.finance.service;
 
 import br.com.hadryan.finance.exception.EmailAlreadyRegisteredException;
+import br.com.hadryan.finance.exception.NotFoundException;
 import br.com.hadryan.finance.mapper.UserMapper;
 import br.com.hadryan.finance.mapper.dto.request.UserPostRequest;
 import br.com.hadryan.finance.mapper.dto.request.UserPutRequest;
@@ -9,9 +10,7 @@ import br.com.hadryan.finance.mapper.dto.response.UserPostResponse;
 import br.com.hadryan.finance.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +25,7 @@ public class UserService {
     public UserGetResponse findById(Long id) {
         log.info("Finding user by id: {}", id);
         var user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
         return userMapper.userToGetResponse(user);
     }
 
@@ -44,17 +43,28 @@ public class UserService {
     public void update(UserPutRequest request, Long id) {
         log.info("Updating user: {}", request);
         var userFound = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
         userFound.setUpdatedAt(LocalDateTime.now());
-        userFound.setUsername(request.getUsername());
-        userFound.setPassword(request.getPassword());
+
+        if (request.getPassword() != null) {
+            userFound.setPassword(request.getPassword());
+        }
+
+        if (request.getEmail() != null) {
+            userFound.setEmail(request.getEmail());
+        }
+
+        if (request.getUsername() != null) {
+            userFound.setUsername(request.getUsername());
+        }
+
         userRepository.save(userFound);
     }
 
     public void delete(Long id) {
         log.info("Deleting user with id: {}", id);
         var userFound = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
         userRepository.delete(userFound);
     }
 
