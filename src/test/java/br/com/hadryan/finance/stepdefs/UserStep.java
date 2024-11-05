@@ -1,9 +1,9 @@
 package br.com.hadryan.finance.stepdefs;
 
 import br.com.hadryan.finance.mapper.UserMapperImpl;
-import br.com.hadryan.finance.mapper.dto.request.UserPostRequest;
-import br.com.hadryan.finance.mapper.dto.response.UserGetResponse;
-import br.com.hadryan.finance.mapper.dto.response.UserPostResponse;
+import br.com.hadryan.finance.mapper.dto.request.user.UserPostRequest;
+import br.com.hadryan.finance.mapper.dto.response.user.UserGetResponse;
+import br.com.hadryan.finance.mapper.dto.response.user.UserPostResponse;
 import br.com.hadryan.finance.model.User;
 import br.com.hadryan.finance.repository.UserRepository;
 import io.cucumber.datatable.DataTable;
@@ -108,17 +108,17 @@ public class UserStep extends StepDefsDefault {
         getResponse = restTemplate.exchange(URL + "/0", HttpMethod.DELETE, null, UserGetResponse.class);
     }
 
-    @Then("a resposta da requisição POST deve ter o status code {int}")
+    @Then("a resposta da requisição POST do cadastro de usuario deve ter o status code {int}")
     public void aRespostaDaRequisicaoPostDeveTerOStatusCode(int statusCode) {
         Assertions.assertThat(postResponse.getStatusCode().value()).isEqualTo(statusCode);
     }
 
-    @Then("a resposta da requisição GET deve ter o status code {int}")
+    @Then("a resposta da requisição GET do cadastro de usuario deve ter o status code {int}")
     public void aRespostaDaRequisicaoGetDeveTerOStatusCode(int statusCode) {
         Assertions.assertThat(getResponse.getStatusCode().value()).isEqualTo(statusCode);
     }
 
-    @Then("a resposta da requisição DELETE deve ter o status code {int}")
+    @Then("a resposta da requisição DELETE do cadastro de usuario deve ter o status code {int}")
     public void aRespostaDaRequisicaoDELETEDeveTerOStatusCode(int statusCode) {
         Assertions.assertThat(getResponse.getStatusCode().value()).isEqualTo(statusCode);
     }
@@ -131,7 +131,7 @@ public class UserStep extends StepDefsDefault {
 
     }
 
-    @Then("os dados retornados devem estar corretos")
+    @Then("os dados de usuário retornados devem estar corretos")
     public void osDadosRetornadosDevemEstarCorretos() {
         var user = userRepository.findByUsername("John").get();
         Assertions.assertThat(getResponse.getBody().getUsername()).isEqualTo(user.getUsername());
