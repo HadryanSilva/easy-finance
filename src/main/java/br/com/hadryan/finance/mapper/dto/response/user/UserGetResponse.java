@@ -1,4 +1,4 @@
-package br.com.hadryan.finance.mapper.dto.response;
+package br.com.hadryan.finance.mapper.dto.response.user;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,12 +1,13 @@
-package br.com.hadryan.finance.mapper.dto.request;
+package br.com.hadryan.finance.mapper.dto.request.user;
 
-import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserPostRequest {
+public class UserPutRequest {
+
+    private Long id;
 
     private String username;
 

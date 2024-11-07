@@ -1,13 +1,11 @@
-package br.com.hadryan.finance.mapper.dto.request;
+package br.com.hadryan.finance.mapper.dto.request.user;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserPutRequest {
-
-    private Long id;
+public class UserPostRequest {
 
     private String username;
 

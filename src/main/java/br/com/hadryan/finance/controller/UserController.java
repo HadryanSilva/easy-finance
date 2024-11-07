@@ -1,9 +1,9 @@
 package br.com.hadryan.finance.controller;
 
-import br.com.hadryan.finance.mapper.dto.request.UserPostRequest;
-import br.com.hadryan.finance.mapper.dto.request.UserPutRequest;
-import br.com.hadryan.finance.mapper.dto.response.UserGetResponse;
-import br.com.hadryan.finance.mapper.dto.response.UserPostResponse;
+import br.com.hadryan.finance.mapper.dto.request.user.UserPostRequest;
+import br.com.hadryan.finance.mapper.dto.request.user.UserPutRequest;
+import br.com.hadryan.finance.mapper.dto.response.user.UserGetResponse;
+import br.com.hadryan.finance.mapper.dto.response.user.UserPostResponse;
 import br.com.hadryan.finance.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

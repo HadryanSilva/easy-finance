@@ -1,8 +1,8 @@
 package br.com.hadryan.finance.mapper;
 
-import br.com.hadryan.finance.mapper.dto.request.UserPostRequest;
-import br.com.hadryan.finance.mapper.dto.response.UserGetResponse;
-import br.com.hadryan.finance.mapper.dto.response.UserPostResponse;
+import br.com.hadryan.finance.mapper.dto.request.user.UserPostRequest;
+import br.com.hadryan.finance.mapper.dto.response.user.UserGetResponse;
+import br.com.hadryan.finance.mapper.dto.response.user.UserPostResponse;
 import br.com.hadryan.finance.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

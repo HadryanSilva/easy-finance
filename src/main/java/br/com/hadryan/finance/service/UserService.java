@@ -3,10 +3,10 @@ package br.com.hadryan.finance.service;
 import br.com.hadryan.finance.exception.EmailAlreadyRegisteredException;
 import br.com.hadryan.finance.exception.NotFoundException;
 import br.com.hadryan.finance.mapper.UserMapper;
-import br.com.hadryan.finance.mapper.dto.request.UserPostRequest;
-import br.com.hadryan.finance.mapper.dto.request.UserPutRequest;
-import br.com.hadryan.finance.mapper.dto.response.UserGetResponse;
-import br.com.hadryan.finance.mapper.dto.response.UserPostResponse;
+import br.com.hadryan.finance.mapper.dto.request.user.UserPostRequest;
+import br.com.hadryan.finance.mapper.dto.request.user.UserPutRequest;
+import br.com.hadryan.finance.mapper.dto.response.user.UserGetResponse;
+import br.com.hadryan.finance.mapper.dto.response.user.UserPostResponse;
 import br.com.hadryan.finance.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public UserPostResponse save(UserPostRequest request) {
-        log.info("Saving user: {}", request);
+        log.info("Saving user: {}", request.getUsername());
         var user = userMapper.postToUser(request);
         user.setCreatedAt(LocalDateTime.now());
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
@@ -41,7 +41,7 @@ public class UserService {
     }
 
     public void update(UserPutRequest request, Long id) {
-        log.info("Updating user: {}", request);
+        log.info("Updating user: {}", request.getUsername());
         var userFound = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found"));
         userFound.setUpdatedAt(LocalDateTime.now());
